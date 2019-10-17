@@ -16,6 +16,8 @@ process blocked on a pthread condition variable. The test measures the time
 between the parent process sending the pipe message and the child process thread
 blocked on the condition variable being woken up.
 
+Tested on macOS 10.15 and Ubuntu 18.04.
+
 To build:
 
     $ make
