@@ -19,7 +19,8 @@ pipe-timer: utils.c timer.c pipe-timer.c
 pipe-signal-timer: utils.c timer.c pipe-signal-timer.c
 	$(CC) $(CCFLAGS) $? -pthread -o $@
 
-test:
+test: all
+	@echo Set TEST_ARGS to pass arguments to the tests.
 	./shm-unblock-timer $(TEST_ARGS)
 	./pipe-timer $(TEST_ARGS)
 	./pipe-signal-timer $(TEST_ARGS)
