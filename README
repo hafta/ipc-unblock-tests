@@ -1,1 +1,31 @@
-TODO
+These tests attempt to measure the time it takes for a thread blocked in one
+process to become unblocked and run when signalled by another process.
+
+The shm-unblock-timer uses a pthread mutex in shared memory shared between
+two processes. It measures the time between the parent process unlocking the
+mutex and the child process being woken up.
+
+pipe-timer measures the time it takes when the child process is blocked on a
+pipe read and is woken up by the parent process sending a poke message on the
+pipe.
+
+pipe-signal-timer is similar to pipe-timer, but includes a context switch in
+the child process. The child process blocks on a pipe read, but when it is
+woken up by receiving the poke message, it wakes up a thread in the child
+process blocked on a pthread condition variable. The test measures the time
+between the parent process sending the pipe message and the child process thread
+blocked on the condition variable being woken up.
+
+To build:
+
+    $ make
+
+To run the tests:
+
+    $ make test
+
+Options:
+
+    -l                 enables logging
+    -i <ITERATIONS>    specify the number of test iterations
+    -s <MICROSECONDS>  enables random sleeps up to MICROSECONDS
