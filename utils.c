@@ -64,7 +64,7 @@ create_shared_memory(size_t shm_size)
 {
   void *shared_memory;
   shared_memory = mmap(NULL, shm_size, PROT_READ | PROT_WRITE,
-                       MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+                       MAP_SHARED | MAP_ANON, -1, 0);
   return shared_memory;
 }
 
